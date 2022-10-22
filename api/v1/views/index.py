@@ -8,6 +8,6 @@ status = {
 }
 
 
-@app_views.route('/status'):
+@app_views.route('/status')
 def return_status():
     return status
