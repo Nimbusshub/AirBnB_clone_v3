@@ -5,6 +5,7 @@ from flask import Flask
 from flask import Blueprint, render_template
 from models import storage
 from api.v1.views import app_views
+from os import getenv
 from flask import teardown_appcontext
 
 app = Flask(__name__)
