@@ -2,12 +2,12 @@
 
 from api.v1.views import app_views
 
-status = {
+statuss = {
     "status": "OK"
 }
 
 
-@app_views.route('/status')
+@app_views.route('/status', strict_slashes=False)
 def status():
     """Return the status of the server"""
-    return status
+    return statuss
