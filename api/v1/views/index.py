@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+"""Index page of the domain"""
 
 from api.v1.views import app_views
 
