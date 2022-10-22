@@ -8,5 +8,6 @@ status = {
 
 
 @app_views.route('/status')
-def return_status():
+def status():
+    """Return the status of the server"""
     return status
