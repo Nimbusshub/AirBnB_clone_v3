@@ -12,13 +12,13 @@ from models.place import Place
 
 @app_views.route('/cities/<city_id>/places',
                  methods=['GET'], strict_slashes=False)
-def places(city_id):
+def all_places(city_id):
     """Retrieve all places objects related to a city"""
     city = storage.get(City, city_id)
     if not city:
         abort(404)
     place_list = []
-    for plc in city.place:
+    for plc in city.places:
         place_list.append(plc.to_dict())
     return jsonify(place_list)
 
