@@ -43,10 +43,10 @@ def post_state():
     """Post new state object"""
     try:
         post_req = request.get_json()
-        if not 'name' in post_req:
-            abort(400, "Missing name")
     except Exception:
         abort(400, "Not a JSON")
+    if 'name' not in post_req:
+        abort(400, "Missing name")
 
     new_state = State(**post_req)
     storage.new(new_state)
