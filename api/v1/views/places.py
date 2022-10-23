@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""View to handle all Places objects"""
+"""View to handle all place objects"""
 
 from models import storage
 from api.v1.views import app_views
@@ -60,7 +60,7 @@ def post_place(city_id):
 
     __user = storage.get(User, user_id)
     __city = storage.get(City, city_id)
-    if not __user or __city:
+    if not __user or not __city:
         abort(404)
 
     new_place = Place(**post_req)
