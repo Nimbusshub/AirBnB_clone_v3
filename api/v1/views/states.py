@@ -27,7 +27,8 @@ def one_state(state_id):
     return jsonify(state.to_dict())
 
 
-@app_views.route('/states/<state_id>', methods=['DELETE'], strict_slashes=False)
+@app_views.route('/states/<state_id>',
+                 methods=['DELETE'], strict_slashes=False)
 def del_state(state_id):
     """Delete a state obj with its id"""
     state = storage.get(State, state_id)
@@ -59,7 +60,6 @@ def put_state(state_id):
     put_req = request.get_json()
     if not put_req:
         abort(400, "Not a JSON")
-
     state = storage.get(State, state_id)
     if not state:
         abort(404)
