@@ -7,6 +7,7 @@ from models.base_model import BaseModel
 from flask import jsonify, abort, request, make_response
 from models.state import State
 
+
 @app_views.route('/states', methods=['GET'], strict_slashes=False)
 def all_states():
     """Return all states objects"""
@@ -16,6 +17,7 @@ def all_states():
         statess.append(state.to_dict())
     return jsonify(statess)
 
+
 @app_views.route('/states/<state_id>', methods=['GET'], strict_slashes=False)
 def one_state(state_id):
     """Get a single state"""
@@ -23,6 +25,7 @@ def one_state(state_id):
     if not state:
         abort(404)
     return jsonify(state.to_dict())
+
 
 @app_views.route('/states/<state_id>', methods=['DELETE'], strict_slashes=False)
 def del_state(state_id):
@@ -32,7 +35,9 @@ def del_state(state_id):
         abort(404)
     state.delete()
     storage.save()
-    return {}
+    return make_response({}, 200)
+
+
 @app_views.route('/states', methods=['POST'], strict_slashes=False)
 def post_state():
     """Post new state object"""
@@ -48,14 +53,15 @@ def post_state():
     storage.save()
     return make_response(new_state.to_dict(), 201)
 
+
 @app_views.route('/states/<state_id>', methods=['PUT'], strict_slashes=False)
 def put_state(state_id):
     """Update the state object with the provided id"""
     try:
-        post_req = request.get_json()  
+        post_req = request.get_json()
     except Exception:
         abort(400, "Not a JSON")
-        
+
     state = storage.get(State, state_id)
     if not state:
         abort(404)
