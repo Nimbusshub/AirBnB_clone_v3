@@ -11,7 +11,7 @@ from models.state import State
 
 @app_views.route('/states/<state_id>/cities',
                  methods=['GET'], strict_slashes=False)
-def all_state(state_id):
+def all_state_city(state_id):
     """Retrieve all city objects related to state"""
     state = storage.get(State, state_id)
     if not state:
@@ -72,7 +72,7 @@ def put_city(city_id):
     city = storage.get(City, city_id)
     if not city:
         abort(404)
-    ignore_keys = ['id', 'created_id', 'updated_at']
+    ignore_keys = ['id', 'created_id', 'updated_at', 'state_id']
 
     for key, value in put_req.items():
         if key not in ignore_keys:
